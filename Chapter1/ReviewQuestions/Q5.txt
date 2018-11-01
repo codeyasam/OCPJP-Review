@@ -1,0 +1,5 @@
+/* Q5 Which of the following statements are true, assuming a and b are String objects?
+*/
+
+If a.equals(b) is true, a.hashCode() == b.hashCode() is always true.
+If a.equals(b) is false, a.hashCode() == b.hashCode() can sometimes be true.

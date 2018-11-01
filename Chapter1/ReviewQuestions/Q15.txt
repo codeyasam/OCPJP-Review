@@ -1,0 +1,5 @@
+/* Q15: Which of the following statements are true about the equals() method?
+*/
+
+If equals(null) is called, the method should retruen false.
+If equals() is passed the wrong type, the method should return false.
