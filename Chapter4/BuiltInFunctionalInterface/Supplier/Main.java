@@ -29,7 +29,12 @@ public class Main {
         
         System.out.println(s3.get());
         System.out.println(s4.get());
+        
+        Supplier<ArrayList<String>> s5 = ArrayList<String>::new;
+        ArrayList<String> a1 = s5.get();
+        System.out.println(a1);
+        
+        System.out.println(s5);
     }
-    
 }
 
