@@ -20,6 +20,10 @@ import java.util.Optional;
 import java.util.List;
 import java.util.Arrays;
 import java.util.function.Predicate;
+import java.util.function.BinaryOperator;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.Set;
 
 public class Main {
     
@@ -89,6 +93,46 @@ public class Main {
         Stream<String> stream = Stream.of("w", "o", "l", "f");
         String word = stream.reduce("", (s7, c7) -> s7 + c7);
         System.out.println(word);
+        
+        // rewrite using method reference
+        Stream<String> stream2 = Stream.of("w", "o", "l", "f");
+        String word2 = stream2.reduce("", String::concat);
+        System.out.println(word2);
+        
+        Stream<Integer> stream3 = Stream.of(3, 5, 6);
+        System.out.println(stream3.reduce(1, (a, b) -> a * b));
+        
+        // omitting the identity
+        BinaryOperator<Integer> op = (a, b) -> a * b;
+        Stream<Integer> empty = Stream.empty();
+        Stream<Integer> oneElement = Stream.of(3);
+        Stream<Integer> threeElements = Stream.of(3, 5, 6);
+        
+        empty.reduce(op).ifPresent(System.out::print);  // no output
+        oneElement.reduce(op).ifPresent(System.out::println); // 3
+        threeElements.reduce(op).ifPresent(System.out::println); // 90
+        
+        Stream<Integer> stream4 = Stream.of(3, 5, 6);
+        System.out.println(stream4.reduce(1, op, op)); // 90
+        
+        // collect() is a special type of reduction called a mutable reduction
+        // method signature: <R> R collect(Supplier<R> supplier, BiConsumer<R, ? super T> accumulator, BiConsumer<R, R> combiner)
+        // <R, A> collect(Collector<? super T, A, R> collector)
+        Stream<String> stream5 = Stream.of("w", "o", "l", "f");
+        StringBuilder word5 = stream5.collect(StringBuilder::new, StringBuilder::append, StringBuilder::append);
+        System.out.println(word5);
+        
+        Stream<String> stream6 = Stream.of("w", "o", "l", "f");
+        TreeSet<String> set = stream6.collect(TreeSet::new, TreeSet::add, TreeSet::addAll);
+        System.out.println(set); // sorted but reversed
+        
+        Stream<String> stream7 = Stream.of("w", "o", "l", "f");
+        TreeSet<String> set2 = stream7.collect(Collectors.toCollection(TreeSet::new));
+        System.out.println(set2);
+        
+        Stream<String> stream8 = Stream.of("w", "o", "l", "f");
+        Set<String> set3 = stream8.collect(Collectors.toSet());
+        System.out.println(set3);
     }
     
 }
