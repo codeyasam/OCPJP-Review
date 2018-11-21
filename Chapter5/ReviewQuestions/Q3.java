@@ -1,0 +1,6 @@
+/* Q3: Which of the following are true? (Choose all that apply) 
+*
+* C. All resource bundles defined as property files can be expressed using the java class list bundle format instead.
+* D. Changing the default locale lasts for only a single run of the program.
+* 
+*/
