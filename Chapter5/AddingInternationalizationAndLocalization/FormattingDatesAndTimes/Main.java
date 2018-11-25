@@ -37,19 +37,19 @@ public class Main {
         dateTime = LocalDateTime.of(date, time);
         DateTimeFormatter shortF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
         DateTimeFormatter mediumF = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
-        System.out.println(shortF.format(dateTime));
-        System.out.println(mediumF.format(dateTime));
+        System.out.println(shortF.format(dateTime));                                     // 1/20/20 11:12 AM
+        System.out.println(mediumF.format(dateTime));                                    // Jan 20, 2020 11:12:34 AM  
         
         // creaing your own
         DateTimeFormatter f = DateTimeFormatter.ofPattern("MMMM dd, yyyy, hh:mm");
-        System.out.println(dateTime.format(f));
+        System.out.println(dateTime.format(f));                                          // January 20, 2020, 11:12
         
         // parsing dates
         f = DateTimeFormatter.ofPattern("MM dd yyyy");
         date = LocalDate.parse("01 02 2015", f);
         time = LocalTime.parse("11:22");
-        System.out.println(date);
-        System.out.println(time);
+        System.out.println(date);            // 2015-01-02 
+        System.out.println(time);            // 11:22
     }
     
 }

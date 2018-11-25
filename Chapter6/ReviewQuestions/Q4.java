@@ -1,0 +1,6 @@
+/* Q4: Which of the following are true statement? (Choose all that apply.) 
+*
+* A. A traditional try statement without a catch block requires a finally block.
+* B. A traditional try statement without a finally block requires a catch block.
+* 
+*/
