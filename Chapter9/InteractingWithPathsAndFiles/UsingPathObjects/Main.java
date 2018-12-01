@@ -19,6 +19,9 @@ public class Main {
         for (int i = 0; i < path.getNameCount(); i++) {
             System.out.println("  Element " + i + " is: " + path.getName(i));   
         }
+        
+       Path path2 = Paths.get("/zoo/../home").getParent().normalize().toAbsolutePath();
+        System.out.println(path2);
     }
     
 }
@@ -87,8 +90,49 @@ class PathSubPath {
 
 /* Deriving a Path with relativize()
 *
+* relativize() method requires that both paths be absolute or both relative else it will throw an IllegalArgumentException
 */
 
 class PathRelativize {
-
+    
+    public static void main(String[] args) {
+        Path path1 = Paths.get("fish.txt");
+        Path path2 = Paths.get("birds.txt");
+        System.out.println(path1.relativize(path2));
+        System.out.println(path2.relativize(path1));
+        
+        Path path3 = Paths.get("/habitat");
+        Path path4 = Paths.get("/sanctuary/raven");
+        System.out.println(path3.relativize(path4));
+        System.out.println(path4.relativize(path3));        
+    }
+    
 }
+
+/* Joining Path Objects with Resolve */
+
+class PathResolve {
+    
+    public static void main(String[] args) {
+        final Path path1 = Paths.get("/cats/../panther");
+        final Path path2 = Paths.get("food");
+        System.out.println(path1.resolve(path2));
+    }
+    
+}
+
+/* Cleaning up a path with normalize() */
+
+class PathNormalize {
+    
+    public static void main(String[] args) {
+        Path path1 = Paths.get("/sample/");
+        Path path2 = Paths.get("/another/two");
+        System.out.println(path1.resolve(path2).normalize());
+    }
+}
+
+/* Checking for File Existence with toRealPath
+* 
+* throws IOException and supports symbolic link
+*/
